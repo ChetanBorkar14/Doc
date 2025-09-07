@@ -7,95 +7,112 @@
 	--font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
 	/* Radius */
-	--radius: 0.625rem;
+	--radius: 0.75rem;
 
-	/* Light theme colors */
-	--color-background: oklch(1 0 0);
-	--color-foreground: oklch(0.145 0 0);
+	/* Doctor-themed color palette */
+	/* Primary: #05668d (Deep Blue) */
+	--color-primary: #05668d;
+	--color-primary-foreground: #ffffff;
+	
+	/* Secondary: #028090 (Teal) */
+	--color-secondary: #028090;
+	--color-secondary-foreground: #ffffff;
+	
+	/* Accent: #00a896 (Green) */
+	--color-accent: #00a896;
+	--color-accent-foreground: #ffffff;
+	
+	/* Success: #02c39a (Light Green) */
+	--color-success: #02c39a;
+	--color-success-foreground: #ffffff;
+	
+	/* Background: #f0f3bd (Light Cream) */
+	--color-background: #f0f3bd;
+	--color-foreground: #05668d;
 
-	--color-card: oklch(1 0 0);
-	--color-card-foreground: oklch(0.145 0 0);
+	/* Cards */
+	--color-card: #ffffff;
+	--color-card-foreground: #05668d;
 
-	--color-popover: oklch(1 0 0);
-	--color-popover-foreground: oklch(0.145 0 0);
+	/* Popover */
+	--color-popover: #ffffff;
+	--color-popover-foreground: #05668d;
 
-	--color-primary: oklch(0.205 0 0);
-	--color-primary-foreground: oklch(0.985 0 0);
+	/* Muted */
+	--color-muted: #f8f9fa;
+	--color-muted-foreground: #6c757d;
 
-	--color-secondary: oklch(0.97 0 0);
-	--color-secondary-foreground: oklch(0.205 0 0);
+	/* Destructive */
+	--color-destructive: #dc3545;
+	--color-destructive-foreground: #ffffff;
 
-	--color-muted: oklch(0.97 0 0);
-	--color-muted-foreground: oklch(0.556 0 0);
-
-	--color-accent: oklch(0.97 0 0);
-	--color-accent-foreground: oklch(0.205 0 0);
-
-	--color-destructive: oklch(0.577 0.245 27.325);
-
-	--color-border: oklch(0.922 0 0);
-	--color-input: oklch(0.922 0 0);
-	--color-ring: oklch(0.708 0 0);
+	/* Border & Input */
+	--color-border: #e9ecef;
+	--color-input: #ffffff;
+	--color-ring: #05668d;
 
 	/* Charts */
-	--color-chart-1: oklch(0.646 0.222 41.116);
-	--color-chart-2: oklch(0.6 0.118 184.704);
-	--color-chart-3: oklch(0.398 0.07 227.392);
-	--color-chart-4: oklch(0.828 0.189 84.429);
-	--color-chart-5: oklch(0.769 0.188 70.08);
+	--color-chart-1: #05668d;
+	--color-chart-2: #028090;
+	--color-chart-3: #00a896;
+	--color-chart-4: #02c39a;
+	--color-chart-5: #f0f3bd;
 
 	/* Sidebar */
-	--color-sidebar: oklch(0.985 0 0);
-	--color-sidebar-foreground: oklch(0.145 0 0);
-	--color-sidebar-primary: oklch(0.205 0 0);
-	--color-sidebar-primary-foreground: oklch(0.985 0 0);
-	--color-sidebar-accent: oklch(0.97 0 0);
-	--color-sidebar-accent-foreground: oklch(0.205 0 0);
-	--color-sidebar-border: oklch(0.922 0 0);
-	--color-sidebar-ring: oklch(0.708 0 0);
+	--color-sidebar: #ffffff;
+	--color-sidebar-foreground: #05668d;
+	--color-sidebar-primary: #05668d;
+	--color-sidebar-primary-foreground: #ffffff;
+	--color-sidebar-accent: #f0f3bd;
+	--color-sidebar-accent-foreground: #05668d;
+	--color-sidebar-border: #e9ecef;
+	--color-sidebar-ring: #05668d;
 }
 
-/* Dark mode overrides */
-.dark {
-	--color-background: oklch(0.145 0 0);
-	--color-foreground: oklch(0.985 0 0);
+/* Custom doctor-themed styles */
+.doctor-gradient {
+	background: linear-gradient(135deg, #05668d 0%, #028090 50%, #00a896 100%);
+}
 
-	--color-card: oklch(0.205 0 0);
-	--color-card-foreground: oklch(0.985 0 0);
+.medical-card {
+	background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+	border: 1px solid #e9ecef;
+	box-shadow: 0 4px 6px -1px rgba(5, 102, 141, 0.1), 0 2px 4px -1px rgba(5, 102, 141, 0.06);
+}
 
-	--color-popover: oklch(0.205 0 0);
-	--color-popover-foreground: oklch(0.985 0 0);
+.medical-card:hover {
+	box-shadow: 0 10px 15px -3px rgba(5, 102, 141, 0.1), 0 4px 6px -2px rgba(5, 102, 141, 0.05);
+	transform: translateY(-2px);
+	transition: all 0.3s ease;
+}
 
-	--color-primary: oklch(0.922 0 0);
-	--color-primary-foreground: oklch(0.205 0 0);
+.health-indicator {
+	background: linear-gradient(90deg, #02c39a 0%, #00a896 100%);
+}
 
-	--color-secondary: oklch(0.269 0 0);
-	--color-secondary-foreground: oklch(0.985 0 0);
+.urgent-indicator {
+	background: linear-gradient(90deg, #dc3545 0%, #c82333 100%);
+}
 
-	--color-muted: oklch(0.269 0 0);
-	--color-muted-foreground: oklch(0.708 0 0);
+.warning-indicator {
+	background: linear-gradient(90deg, #ffc107 0%, #e0a800 100%);
+}
 
-	--color-accent: oklch(0.269 0 0);
-	--color-accent-foreground: oklch(0.985 0 0);
-
-	--color-destructive: oklch(0.704 0.191 22.216);
-
-	--color-border: oklch(1 0 0 / 10%);
-	--color-input: oklch(1 0 0 / 15%);
-	--color-ring: oklch(0.556 0 0);
-
-	--color-chart-1: oklch(0.488 0.243 264.376);
-	--color-chart-2: oklch(0.696 0.17 162.48);
-	--color-chart-3: oklch(0.769 0.188 70.08);
-	--color-chart-4: oklch(0.627 0.265 303.9);
-	--color-chart-5: oklch(0.645 0.246 16.439);
-
-	--color-sidebar: oklch(0.205 0 0);
-	--color-sidebar-foreground: oklch(0.985 0 0);
-	--color-sidebar-primary: oklch(0.488 0.243 264.376);
-	--color-sidebar-primary-foreground: oklch(0.985 0 0);
-	--color-sidebar-accent: oklch(0.269 0 0);
-	--color-sidebar-accent-foreground: oklch(0.985 0 0);
-	--color-sidebar-border: oklch(1 0 0 / 10%);
-	--color-sidebar-ring: oklch(0.556 0 0);
+/* Mobile responsive utilities */
+@media (max-width: 768px) {
+	.mobile-stack {
+		flex-direction: column;
+	}
+	
+	.mobile-full {
+		width: 100%;
+	}
+	
+	.mobile-padding {
+		padding: 1rem;
+	}
+	
+	.mobile-text-sm {
+		font-size: 0.875rem;
+	}
 }
