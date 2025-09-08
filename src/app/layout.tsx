@@ -17,8 +17,7 @@ export const metadata: Metadata = {
   description: "Professional healthcare management system for doctors",
 };
 
-import Sidebar from "@/components/Sidebar";
-import MobileHeader from "@/components/MobileHeader";
+import TopNav from "@/components/TopNav";
 
 export default function RootLayout({
   children,
@@ -28,16 +27,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground font-sans min-h-screen`}>
-        <div className="flex min-h-screen">
-          <Sidebar />
-          {/* Main Content */}
-          <main className="flex-1 bg-background overflow-y-auto min-h-screen">
-            <MobileHeader />
-            <div className="min-h-screen">
-              {children}
-            </div>
-          </main>
-        </div>
+        <TopNav />
+        <main className="min-h-screen">
+          <div className="min-h-screen">
+            {children}
+          </div>
+        </main>
       </body>
     </html>
   );

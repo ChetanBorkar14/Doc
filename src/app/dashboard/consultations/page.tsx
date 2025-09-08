@@ -1,7 +1,6 @@
 "use client";
 
-
-import { db } from "@/data/data";
+import useSWR from "swr";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
@@ -15,10 +14,13 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 
 
+const fetcher = (url: string) => fetch(url).then((r) => r.json());
+
 export default function ConsultationsPage() {
-  const doctor = db.doctors[0];
-  const consultations = doctor.patients_seen;
-  const patients = db.patients;
+  const { data: consData } = useSWR<{ consultations: any[] }>("/api/consultations", fetcher);
+  const { data: patientsData } = useSWR<{ patients: any[] }>("/api/patients", fetcher);
+  const consultations = consData?.consultations || [];
+  const patients = patientsData?.patients || [];
   const getPatientName = (id: string) => {
     const patient = patients.find((p) => p.patient_id === id);
     return patient ? patient.name : "Unknown";

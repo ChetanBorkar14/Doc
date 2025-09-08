@@ -1,13 +1,16 @@
 "use client";
 
-import { db } from "@/data/data";
+import useSWR from "swr";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Users, FileText, Star, Clock, MapPin, Award } from "lucide-react";
 
+const fetcher = (url: string) => fetch(url).then((r) => r.json());
+
 export default function DashboardPage() {
-  const doctor = db.doctors[0];
+  const { data } = useSWR<{ doctor: any }>("/api/doctors", fetcher);
+  const doctor = data?.doctor || { ratings: { average_rating: 0, total_reviews: 0 }, availability: { working_hours: { start_time: "--", end_time: "--" } }, patients_seen: [], prescriptions: [], name: "--", specialization: "--", hospital_affiliation: "--" };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f0f3bd] via-white to-[#f0f3bd] p-4 lg:p-8">

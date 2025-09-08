@@ -1,6 +1,6 @@
 "use client";
 
-import { db } from "@/data/data";
+import useSWR from "swr";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
@@ -13,8 +13,11 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Pill, Package, AlertTriangle, CheckCircle, Search, Filter } from "lucide-react";
 
+const fetcher = (url: string) => fetch(url).then((r) => r.json());
+
 export default function PharmacyPage() {
-  const medicines = db.pharmacy.available_medicines;
+  const { data } = useSWR<{ pharmacy: any }>("/api/pharmacy", fetcher);
+  const medicines = data?.pharmacy?.available_medicines || [];
 
   const getStockStatus = (quantity: number) => {
     if (quantity === 0) return { status: "out", color: "urgent-indicator", text: "Out of Stock" };

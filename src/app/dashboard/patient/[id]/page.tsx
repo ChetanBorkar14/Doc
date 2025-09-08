@@ -2,7 +2,7 @@
 
 
 import { useParams } from "next/navigation";
-import { db } from "@/data/data";
+import useSWR from "swr";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
@@ -15,12 +15,16 @@ import {
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 
+const fetcher = (url: string) => fetch(url).then((r) => r.json());
+
 export default function PatientDetailsPage() {
   const params = useParams();
   const patientId = params?.id as string;
 
-  const patient = db.patients.find((p) => p.patient_id === patientId);
-  const doctors = db.doctors;
+  const { data: patientData } = useSWR<{ patient: any }>(patientId ? `/api/patient/${patientId}` : null, fetcher);
+  const { data: doctorsData } = useSWR<{ doctor: any }>("/api/doctors", fetcher);
+  const patient = patientData?.patient;
+  const doctors = doctorsData?.doctor ? [doctorsData.doctor] : [];
   const getDoctorName = (id: string) => {
     const doc = doctors.find((d) => d.doctor_id === id);
     return doc ? doc.name : id;

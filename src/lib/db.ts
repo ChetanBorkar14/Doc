@@ -1,6 +1,6 @@
 import { MongoClient, ServerApiVersion, Db, Collection, Document } from "mongodb";
 
-const uri = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/doctor_dashboard";
+const uri = process.env.MONGODB_URI || process.env.MONGO_URL || "mongodb://127.0.0.1:27017/doctor_dashboard";
 
 declare global {
   // eslint-disable-next-line no-var
@@ -20,13 +20,12 @@ export async function getMongoClient(): Promise<MongoClient> {
     });
   }
   client = global.__mongoClient;
-  if (!client.db) {
-    await client.connect();
-  }
+  // Ensure connection (idempotent)
+  await client.connect();
   return client;
 }
 
-export async function getDb(dbName = process.env.MONGODB_DB || "doctor_dashboard"): Promise<Db> {
+export async function getDb(dbName = process.env.MONGODB_DB || process.env.DB_NAME || "doctor_dashboard"): Promise<Db> {
   const c = await getMongoClient();
   return c.db(dbName);
 }

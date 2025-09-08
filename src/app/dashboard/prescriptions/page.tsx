@@ -1,6 +1,6 @@
 "use client";
 
-import { db } from "@/data/data";
+import useSWR from "swr";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
@@ -14,10 +14,13 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { FileText, Plus, Calendar, User, Pill, Clock } from "lucide-react";
 
+const fetcher = (url: string) => fetch(url).then((r) => r.json());
+
 export default function PrescriptionsPage() {
-  const doctor = db.doctors[0];
-  const prescriptions = doctor.prescriptions;
-  const patients = db.patients;
+  const { data: presData } = useSWR<{ prescriptions: any[] }>("/api/prescriptions", fetcher);
+  const { data: patientsData } = useSWR<{ patients: any[] }>("/api/patients", fetcher);
+  const prescriptions = presData?.prescriptions || [];
+  const patients = patientsData?.patients || [];
   
   const getPatientName = (id: string) => {
     const patient = patients.find((p) => p.patient_id === id);
